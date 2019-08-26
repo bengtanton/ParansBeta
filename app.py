@@ -11,10 +11,10 @@ import matplotlib.pyplot as plotter ## added this line to test Pandas
 #pd.read_csv('X&Y.csv')                        #this was the original on this line  df_test = pd.read_csv('testspektra.csv')
 
 serieA = pd.Series([1,2,3,4,5,7,8])
-serieA
+'''
 
 ########### Set up the chart
-/*comment starts
+
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -128,4 +128,4 @@ def update_graph(valda_serier):
 
 if __name__ == '__main__':
     app.run_server()
-*/ #comment ends
+'''
