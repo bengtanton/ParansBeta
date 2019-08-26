@@ -9,7 +9,7 @@ import pandas as pd
 
 df_test = pd.read_csv('testspektra.csv')
 
-########### Set up the chart
+########### Set up the chart OCH LITE NYTT
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
