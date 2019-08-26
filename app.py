@@ -4,12 +4,13 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import plotly.graph_objs as go
 import pandas as pd
+import matplotlib.pyplot as plotter ## added this line to test Pandas
 
 ########### Get Data
 
 df_test = pd.read_csv('testspektra.csv')
 
-########### Set up the chart OCH LITE NYTT
+########### Set up the chart
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
