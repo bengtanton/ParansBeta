@@ -128,4 +128,4 @@ def update_graph(valda_serier):
 
 if __name__ == '__main__':
     app.run_server()
-*/
+*/ #comment ends
