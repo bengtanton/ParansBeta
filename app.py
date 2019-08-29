@@ -11,7 +11,6 @@ import matplotlib.pyplot as plotter ## added this line to test Pandas
 #pd.read_csv('X&Y.csv')                        #this was the original on this line  df_test = pd.read_csv('testspektra.csv')
 
 serieA = pd.Series([1,2,3,4,5,7,8])
-'''
 
 ########### Set up the chart
 
@@ -26,11 +25,7 @@ server = app.server
 
 app.layout = html.Div(children=[
     html.H1('Header'),
-
-
-
     html.Label('Choose Lightsource'),
-
     dcc.Dropdown(
         id='droplista',
         options=[
@@ -44,83 +39,71 @@ app.layout = html.Div(children=[
         value=['Unfiltered Daylight'],
         multi=True
     ),
-
     html.Div(id='my-div'),
-
-
     dcc.Graph(
         id='spektra'
     ),
-
-
-
-]
+    ]
 )
-
+ax=serieA.plot()
 ########### Callbacks!
 
-@app.callback(
-    Output(component_id='my-div', component_property='children'),
-    [Input(component_id='droplista', component_property='value')]
-)
-def update_output_div(input_value):
-    return 'You\'ve entered "{}"'.format(input_value)
+# @app.callback(
+#    Output(component_id='my-div', component_property='children'),
+#    [Input(component_id='droplista', component_property='value')]
+#)
+#def update_output_div(input_value):
+ #   return 'You\'ve entered "{}"'.format(input_value)
 
-
-@app.callback(
-    dash.dependencies.Output('spektra', 'figure'),
-    [dash.dependencies.Input('droplista', 'value')])
-def update_graph(valda_serier):
-
-    cols=valda_serier.copy()
-    cols.extend(['Wavelength_nm'])
-    df_vald = df_test[cols]
-
-    trace=[]
-
-    for serie in valda_serier:
-        trace=trace+[go.Scatter(
-            x=df_vald['Wavelength_nm'],
-            y=df_vald[serie],
-            mode='lines',
-            name=serie
-        )]
-
-    trace_text=go.Scatter(
-    x=[550],
-    y=[-0.15],
-    text=['Visible spectra'],
-    mode='text',
-    showlegend=False
-    )
-
-    trace.extend([trace_text])
-
-    return {
-        'data': trace,
-
-
-        'layout': go.Layout(
-            title="Daylight specrum through filters",
-            xaxis={'title': 'Frequency [nm]'},
-            yaxis={'title': 'Relative energy intensity [%]'},
-            showlegend=True,
-            shapes=[dict(type='rect',
-                    layer='below',
-                    xref='x',
-                    yref='paper',
-                    x0=380,
-                    y0=0,
-                    x1=740,
-                    y1=1,
-                    opacity=0.3,
-                    fillcolor='#d3d3d3',
-                    line=dict(width=0)
-                )]
-
-
-        )
-    }
+# @app.callback(
+ #   dash.dependencies.Output('spektra', 'figure'),
+ #   [dash.dependencies.Input('droplista', 'value')])
+ # def update_graph(valda_serier):
+ #
+ #   cols=valda_serier.copy()
+ #   cols.extend(['Wavelength_nm'])
+ #   df_vald = df_test[cols]
+ #
+ #   trace=[]
+ #   for serie in valda_serier:
+ #       trace=trace+[go.Scatter(
+ #           x=df_vald['Wavelength_nm'],
+ #           y=df_vald[serie],
+ #           mode='lines',
+ #           name=serie
+ #       )]
+ #
+ #   trace_text=go.Scatter(
+ #   x=[550],
+ #   y=[-0.15],
+ #   text=['Visible spectra'],
+ #  mode='text',
+ #  showlegend=False
+ #   )
+#
+ #   trace.extend([trace_text])
+ #
+ #   return {
+ #       'data': trace,
+ #       'layout': go.Layout(
+ #           title="Daylight specrum through filters",
+ #           xaxis={'title': 'Frequency [nm]'},
+ #          yaxis={'title': 'Relative energy intensity [%]'},
+ #           showlegend=True,
+ #           shapes=[dict(type='rect',
+ #                   layer='below',
+ #                   xref='x',
+ #                   yref='paper',
+ #                   x0=380,
+ #                   y0=0,
+ #                   x1=740,
+ #                   y1=1,
+ #                   opacity=0.3,
+ #                   fillcolor='#d3d3d3',
+ #                   line=dict(width=0)
+ #               )]
+ #       )
+ #   }
 
 
 ########### Run app!
@@ -128,4 +111,4 @@ def update_graph(valda_serier):
 
 if __name__ == '__main__':
     app.run_server()
-'''
+
